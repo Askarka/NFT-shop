@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: nftshop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres:5432
+
+  nftshop:
+    container_name: nftshop
+    image: nft-shop:0.1.0-SNAPSHOT
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+    restart: always
